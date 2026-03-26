@@ -1,0 +1,347 @@
+<!--landing page-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StackStory — Your GitHub Has a Story</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="landing.css">
+</head>
+<body>
+
+    <!-- ================================
+         NAVBAR
+    ================================ -->
+    <header class="navbar">
+        <div class="container navbar-inner">
+
+            <!-- Logo -->
+            <a href="index.html" class="navbar-logo">
+                <span class="logo-icon">✦</span>
+                StackStory
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="navbar-links">
+                <a href="#how-it-works">How it Works</a>
+                <a href="#examples">Examples</a>
+                <a href="https://github.com" target="_blank">GitHub</a>
+            </nav>
+
+            <!-- CTA -->
+            <a href="#hero-search" class="btn-primary navbar-cta">Try it Free</a>
+
+            <!-- Mobile Burger -->
+            <button class="burger" id="burger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </div>
+
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#how-it-works" onclick="closeMobileMenu()">How it Works</a>
+            <a href="#examples" onclick="closeMobileMenu()">Examples</a>
+            <a href="https://github.com" target="_blank">GitHub</a>
+            <a href="#hero-search" class="btn-primary" onclick="closeMobileMenu()">Try it Free</a>
+        </div>
+    </header>
+
+    <!-- ================================
+         HERO
+    ================================ -->
+    <section class="hero" id="hero">
+        <div class="container hero-inner">
+
+            <!-- Badge -->
+            <div class="hero-badge">
+                <span class="badge-dot"></span>
+                Built for developers. Read by recruiters.
+            </div>
+
+            <!-- Headline -->
+            <h1 class="hero-title">
+                Your GitHub has a story.<br/>
+                <span class="hero-title-accent">We just help you tell it.</span>
+            </h1>
+
+            <!-- Subtext -->
+            <p class="hero-sub">
+                Enter any GitHub username and instantly see a developer's
+                journey — commits, growth, and skills — in a way
+                recruiters actually understand.
+            </p>
+
+            <!-- Search Bar -->
+            <div class="hero-search" id="hero-search">
+                <div class="search-bar">
+                    <span class="search-icon">⌕</span>
+                    <input
+                        type="text"
+                        id="usernameInput"
+                        placeholder="Enter a GitHub username..."
+                        autocomplete="off"
+                        spellcheck="false"
+                    />
+                    <button class="btn-primary search-btn" onclick="handleSearch()">
+                        See the Story →
+                    </button>
+                </div>
+                <p class="search-hint">Try: <span onclick="fillExample('torvalds')">torvalds</span> · <span onclick="fillExample('gaearon')">gaearon</span> · <span onclick="fillExample('sindresorhus')">sindresorhus</span></p>
+            </div>
+
+            <!-- Social proof -->
+            <p class="hero-proof">
+                Trusted by <strong>500+ developers</strong> and recruiters worldwide
+            </p>
+
+        </div>
+    </section>
+
+    <!-- ================================
+         PROBLEM SECTION
+    ================================ -->
+    <section class="problem-section" id="problem">
+        <div class="problem-cards">
+    <div class="problem-card">
+        <div class="problem-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/>
+                <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+        </div>
+        <div>
+            <h3>Too many repos</h3>
+            <p>Nobody reads 40 repositories. They click away in 10 seconds.</p>
+        </div>
+    </div>
+    <div class="problem-card">
+        <div class="problem-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="12" cy="12" r="10"/>
+                <line x1="12" y1="8" x2="12" y2="12"/>
+                <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+        </div>
+        <div>
+            <h3>No context</h3>
+            <p>Green squares don't tell anyone how you think or how you've grown.</p>
+        </div>
+    </div>
+    <div class="problem-card">
+        <div class="problem-card-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/>
+            </svg>
+        </div>
+        <div>
+            <h3>Great devs get ignored</h3>
+            <p>Not because they can't code. Because nobody could understand their story.</p>
+        </div>
+    </div>
+</div>
+    </section>
+
+    <!-- ================================
+         HOW IT WORKS
+    ================================ -->
+    <section class="how-section" id="how-it-works">
+        <div class="container">
+            <p class="section-label" style="text-align:center;">How It Works</p>
+            <h2 class="section-heading" style="text-align:center;max-width:500px;margin:0 auto 3rem;">
+                From code to clarity in minutes
+            </h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">01</div>
+                    <h3 class="step-title">Enter a GitHub username</h3>
+                    <p class="step-desc">
+                        Type any GitHub username — yours, a candidate's,
+                        or someone you admire. No login required.
+                    </p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">02</div>
+                    <h3 class="step-title">We analyse their activity</h3>
+                    <p class="step-desc">
+                        StackStory reads their repos, commits, languages,
+                        and patterns — and turns it all into signal.
+                    </p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">03</div>
+                    <h3 class="step-title">Get a clean shareable story</h3>
+                    <p class="step-desc">
+                        One link. Full picture. Share it with a recruiter,
+                        paste it in a cold email, or just read it yourself.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================
+         VALUE SECTION
+    ================================ -->
+    <section class="value-section" id="value">
+        <div class="value-grid">
+    <div class="value-card">
+        <div class="value-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+            </svg>
+        </div>
+        <h3>Stand out instantly</h3>
+        <p>Recruiters understand your profile in 60 seconds — not 60 minutes.</p>
+    </div>
+    <div class="value-card">
+        <div class="value-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <line x1="18" y1="20" x2="18" y2="10"/>
+                <line x1="12" y1="20" x2="12" y2="4"/>
+                <line x1="6" y1="20" x2="6" y2="14"/>
+            </svg>
+        </div>
+        <h3>Show growth not just projects</h3>
+        <p>Your commit history tells a story of how far you've come. We surface it.</p>
+    </div>
+    <div class="value-card">
+        <div class="value-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/>
+                <path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/>
+            </svg>
+        </div>
+        <h3>One link instead of 50 repos</h3>
+        <p>Share one clean URL. No more "here's my GitHub, good luck navigating it."</p>
+    </div>
+    <div class="value-card">
+        <div class="value-icon-wrap">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <circle cx="12" cy="12" r="10"/>
+                <polyline points="12 6 12 12 16 14"/>
+            </svg>
+        </div>
+        <h3>Turn work into impact</h3>
+        <p>Technical output becomes clear, readable, human signal that anyone understands.</p>
+    </div>
+</div>
+    </section>
+
+    <!-- ================================
+         SOCIAL PROOF
+    ================================ -->
+    <section class="proof-section">
+        <div class="container proof-inner">
+            <p class="section-label" style="text-align:center;">Built for developers who want to be seen</p>
+            <h2 class="section-heading" style="text-align:center;max-width:540px;margin:0 auto 1rem;">
+                Early users are already getting noticed.
+            </h2>
+            <p class="section-body" style="text-align:center;max-width:480px;margin:0 auto 2.5rem;">
+                Developers are using StackStory to present their work better,
+                land opportunities faster, and stop being overlooked.
+            </p>
+            <div class="proof-stats">
+                <div class="proof-stat">
+                    <p class="proof-stat-value">500+</p>
+                    <p class="proof-stat-label">Developers</p>
+                </div>
+                <div class="proof-stat">
+                    <p class="proof-stat-value">3s</p>
+                    <p class="proof-stat-label">To generate a story</p>
+                </div>
+                <div class="proof-stat">
+                    <p class="proof-stat-value">0</p>
+                    <p class="proof-stat-label">Logins required</p>
+                </div>
+                <div class="proof-stat">
+                    <p class="proof-stat-value">100%</p>
+                    <p class="proof-stat-label">Free forever</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================
+         BOTTOM CTA
+    ================================ -->
+    <section class="cta-section">
+        <div class="container cta-inner">
+            <h2 class="section-heading" style="text-align:center;">
+                Your code deserves<br/>a better story.
+            </h2>
+            <p class="section-body" style="text-align:center;max-width:420px;margin:0 auto 2rem;">
+                Stop sending recruiters a link to 40 repos.
+                Send them a story they actually want to read.
+            </p>
+            <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+                <a href="#hero-search" class="btn-primary">
+                    Create Your StackStory
+                </a>
+                <a href="#how-it-works" class="btn-ghost">
+                    See How It Works
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================
+     WHAT'S NEXT
+================================ -->
+<section class="next-section">
+    <div class="container">
+        <p class="section-label" style="text-align:center;">On The Roadmap</p>
+        <h2 class="section-heading" style="text-align:center;max-width:500px;margin:0 auto 3rem;">
+            We're just getting started.
+        </h2>
+        <div class="next-grid">
+            <div class="next-card">
+                <div class="next-badge">Coming Soon</div>
+                <div class="next-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/>
+                        <circle cx="9" cy="7" r="4"/>
+                        <path d="M23 21v-2a4 4 0 00-3-3.87"/>
+                        <path d="M16 3.13a4 4 0 010 7.75"/>
+                    </svg>
+                </div>
+                <h3>Compare Two Developers</h3>
+                <p>Put two GitHub profiles side by side. Compare consistency, languages, and output. Built for recruiters.</p>
+            </div>
+            <div class="next-card">
+                <div class="next-badge">Coming Soon</div>
+                <div class="next-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                </div>
+                <h3>Send to Recruiter Card</h3>
+                <p>One click generates a cold email with your GitHub stats pre-filled. Your SDR tool as a developer.</p>
+            </div>
+            <div class="next-card">
+                <div class="next-badge">Coming Soon</div>
+                <div class="next-icon">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                        <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                        <line x1="16" y1="2" x2="16" y2="6"/>
+                        <line x1="8" y1="2" x2="8" y2="6"/>
+                        <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                </div>
+                <h3>Activity Heatmap</h3>
+                <p>A beautiful 12-month commit calendar. Shows consistency at a glance — better than GitHub's version.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <script src="utilis.js"></script>
+    <script src="landing.js"></script>
+    <script src="api.js"></script>
+</body>
+</html>

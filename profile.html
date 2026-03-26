@@ -1,0 +1,112 @@
+<!--story profile page-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StackStory — Developer Profile</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="profile.css">
+</head>
+<body>
+
+
+
+    <header class="navbar">
+        <div class="container navbar-inner">
+            <a href="index.html" class="navbar-logo">
+                <span class="logo-icon">✦</span>
+                StackStory
+            </a>
+            <a href="index.html" class="btn-ghost" style="font-size:.82rem;padding:9px 18px;">
+                ← Search another
+            </a>
+        </div>
+    </header>
+
+    <!-- LOADING STATE -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-spinner"></div>
+        <p>Building the story...</p>
+    </div>
+
+    <!-- ERROR STATE -->
+    <div class="error-screen" id="errorScreen" style="display:none;">
+        <p class="error-icon">⚠️</p>
+        <h2>Couldn't find that GitHub user</h2>
+        <p>Double check the username and try again.</p>
+        <a href="index.html" class="btn-primary" style="margin-top:1.5rem;">
+            Try Again
+        </a>
+    </div>
+
+    <!-- MAIN PROFILE CONTENT -->
+    <main class="profile-main" id="profileMain" style="display:none;">
+
+        <!-- USER HEADER -->
+        <section class="user-header">
+            <div class="container user-header-inner">
+                <img class="user-avatar" id="userAvatar" src="" alt="avatar">
+                <div class="user-info">
+                    <h1 class="user-name" id="userName"></h1>
+                    <p class="user-login" id="userLogin"></p>
+                    <p class="user-bio" id="userBio"></p>
+                    <div class="user-meta" id="userMeta"></div>
+                </div>
+                <button class="btn-primary share-btn" onclick="shareProfile()">
+                    Share Story →
+                </button>
+            </div>
+        </section>
+
+        <!-- STAT CARDS -->
+        <section class="stats-section">
+            <div class="container stats-grid" id="statsGrid"></div>
+        </section>
+
+        <!-- PERSONALITY TYPE -->
+        <section class="personality-section">
+            <div class="container" id="personalityCard"></div>
+        </section>
+
+        <!-- TOP REPOS -->
+        <section class="repos-section">
+            <div class="container">
+                <h2 class="section-title">Top Repositories</h2>
+                <div class="repos-grid" id="reposGrid"></div>
+            </div>
+        </section>
+
+        <!-- LANGUAGE BREAKDOWN -->
+        <section class="languages-section">
+            <div class="container">
+                <h2 class="section-title">Language Breakdown</h2>
+                <div class="languages-list" id="languagesList"></div>
+            </div>
+        </section>
+
+        <!-- RECENT ACTIVITY -->
+        <section class="activity-section">
+            <div class="container">
+                <h2 class="section-title">Recent Activity</h2>
+                <div class="activity-feed" id="activityFeed"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="profile-footer">
+        <div class="container">
+            <p>Built by <a href="https://x.com/he_is_rashmon" target="_blank">@he_is_rashmon</a> · <a href="index.html">StackStory</a></p>
+        </div>
+    </footer>
+
+    <script src="utilis.js"></script>
+    <script src="api.js"></script>
+    <script src="render.js"></script>
+    <script src="profile.js"></script>
+</body>
+</html>
