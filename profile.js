@@ -39,6 +39,9 @@ async function loadProfile() {
         renderLanguages(data.languages);
         renderActivity(data.events);
         showProfile();
+        // store data for recruiter card
+currentProfileData = data;
+
     } catch (error) {
         console.error(error);
         showError();
