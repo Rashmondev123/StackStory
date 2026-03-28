@@ -1,92 +1,104 @@
 /* ================================
-   STACKSTORY — DESIGN SYSTEM
-   main.css
+   STACKSTORY — DESIGN SYSTEM v3
+   main.css — Black & White Premium
 ================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap');
 
 :root {
-  /* Colors */
-  --bg: #FAFAFA;
-  --surface: #FFFFFF;
-  --border: #E6E8EB;
-  --accent: #1A1A2E;
-  --accent-hover: #000000;
-  --text: #1A1A2E;
-  --muted: #6E7681;
-  --green: #2DA44E;
-  --red: #CF222E;
+    --bg: #FAFAFA;
+    --surface: #FFFFFF;
+    --card: #F5F5F5;
+    --border: #E8E8E8;
+    --border-dark: #D0D0D0;
+    --text: #0A0A0A;
+    --text-secondary: #555555;
+    --muted: #999999;
+    --white: #FFFFFF;
+    --black: #0A0A0A;
+    --green: #16A34A;
+    --red: #DC2626;
 
-  /* Typography */
-  --font: 'Inter', sans-serif;
+    --font-display: 'Bebas Neue', sans-serif;
+    --font-body: 'DM Sans', sans-serif;
 
-  /* Spacing */
-  --max-width: 1100px;
-  --radius: 12px;
-  --radius-sm: 8px;
+    --max-width: 1100px;
+    --radius: 14px;
+    --radius-sm: 8px;
+    --radius-xs: 6px;
 
-  /* Shadows */
-  --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
-  --shadow-md: 0 4px 16px rgba(0,0,0,0.08);
+    --shadow-sm: 0 1px 4px rgba(0,0,0,0.06);
+    --shadow-md: 0 4px 24px rgba(0,0,0,0.08);
+    --shadow-lg: 0 12px 48px rgba(0,0,0,0.1);
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; }
+*, *::before, *::after {
+    margin: 0; padding: 0;
+    box-sizing: border-box;
+}
+
 html { scroll-behavior: smooth; }
 
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: var(--font);
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-body);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
 }
 
 a { text-decoration: none; color: inherit; }
 img { display: block; max-width: 100%; }
 
-/* ---- UTILITY ---- */
 .container {
-  max-width: var(--max-width);
-  margin: 0 auto;
-  padding: 0 24px;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 28px;
 }
 
+/* ---- BUTTONS ---- */
 .btn-primary {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 12px 24px;
-  background: var(--accent);
-  color: white;
-  font-family: var(--font);
-  font-size: .9rem;
-  font-weight: 600;
-  border-radius: var(--radius-sm);
-  border: none;
-  cursor: pointer;
-  transition: background .2s, transform .15s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 13px 26px;
+    background: var(--black);
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: .88rem;
+    font-weight: 600;
+    letter-spacing: .02em;
+    border-radius: var(--radius-sm);
+    border: none;
+    cursor: pointer;
+    transition: background .2s, transform .15s, box-shadow .2s;
+    white-space: nowrap;
 }
 .btn-primary:hover {
-  background: var(--accent-hover);
-  transform: translateY(-1px);
+    background: #222;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(0,0,0,0.15);
 }
 
 .btn-ghost {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 11px 22px;
-  background: transparent;
-  color: var(--text);
-  font-family: var(--font);
-  font-size: .9rem;
-  font-weight: 500;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border);
-  cursor: pointer;
-  transition: border-color .2s, background .2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 24px;
+    background: transparent;
+    color: var(--text-secondary);
+    font-family: var(--font-body);
+    font-size: .88rem;
+    font-weight: 500;
+    border-radius: var(--radius-sm);
+    border: 1.5px solid var(--border-dark);
+    cursor: pointer;
+    transition: border-color .2s, color .2s, background .2s;
+    white-space: nowrap;
 }
 .btn-ghost:hover {
-  border-color: var(--muted);
-  background: var(--surface);
+    border-color: var(--text);
+    color: var(--text);
+    background: var(--card);
 }
