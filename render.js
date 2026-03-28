@@ -233,3 +233,86 @@ function showProfile() {
     document.getElementById('errorScreen').style.display = 'none';
     document.getElementById('profileMain').style.display = 'block';
 }
+
+
+
+// ---- RECRUITER CARD ----
+let currentProfileData = null;
+
+function openRecruiterCard() {
+    if (!currentProfileData) return;
+
+    const { user, personality, languages, totalStars, topRepos } = currentProfileData;
+    const name = user.name || user.login;
+    const topLang = Object.keys(languages)[0] || 'multiple languages';
+    const topRepo = topRepos[0]?.name || 'various projects';
+    const profileURL = window.location.href;
+    const joinYear = new Date(user.created_at).getFullYear();
+
+    // Subject line
+    const subject = `Developer Profile — ${name} (${personality.type})`;
+    document.getElementById('emailSubject').textContent = subject;
+
+    // Email body
+    const body =
+`Hi [Recruiter Name],
+
+I wanted to share my developer profile with you — I think there might be a good fit worth exploring.
+
+Here's a quick snapshot:
+
+- GitHub since ${joinYear} — ${user.public_repos} public repositories
+- Primary language: ${topLang}
+- Total stars earned: ${totalStars > 0 ? totalStars.toLocaleString() : 'Growing'}
+- Notable work: ${topRepo}
+- Developer type: ${personality.type} — ${personality.desc}
+- Followers: ${user.followers.toLocaleString()} developers following my work
+
+You can see my full developer story here:
+${profileURL}
+
+The link above shows my repositories, language breakdown, recent activity, and a recruiter summary — everything you'd want to know without having to dig through 40 repos.
+
+Happy to jump on a quick call if there's a role that might be a fit.
+
+Best,
+${name}`;
+
+    document.getElementById('emailBody').textContent = body;
+    document.getElementById('recruiterModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeRecruiterCard() {
+    document.getElementById('recruiterModal').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+function copySubject() {
+    const subject = document.getElementById('emailSubject').textContent;
+    navigator.clipboard.writeText(subject).then(() => {
+        const btn = event.target;
+        btn.textContent = 'Copied ✓';
+        setTimeout(() => { btn.textContent = 'Copy'; }, 2000);
+    });
+}
+
+function copyFullEmail() {
+    const subject = document.getElementById('emailSubject').textContent;
+    const body = document.getElementById('emailBody').textContent;
+    const full = `Subject: ${subject}\n\n${body}`;
+    navigator.clipboard.writeText(full).then(() => {
+        const btn = document.getElementById('copyEmailBtn');
+        btn.textContent = 'Copied ✓';
+        btn.style.background = 'var(--green)';
+        setTimeout(() => {
+            btn.textContent = 'Copy Full Email';
+            btn.style.background = '';
+        }, 2000);
+    });
+}
+
+// close on escape key
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') closeRecruiterCard();
+});
