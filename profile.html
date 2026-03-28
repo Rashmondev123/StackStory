@@ -55,9 +55,14 @@
                     <p class="user-bio" id="userBio"></p>
                     <div class="user-meta" id="userMeta"></div>
                 </div>
-                <button class="btn-primary share-btn" onclick="shareProfile()">
-                    Share Story →
-                </button>
+                <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
+    <button class="btn-primary share-btn" onclick="shareProfile()">
+        Share Story →
+    </button>
+    <button class="btn-ghost recruiter-btn" onclick="openRecruiterCard()">
+        Send to Recruiter ✉
+    </button>
+</div>
             </div>
         </section>
 
@@ -97,16 +102,60 @@
 
     </main>
 
+    <!-- RECRUITER CARD MODAL -->
+<div class="modal-overlay" id="recruiterModal" onclick="closeRecruiterCard()">
+    <div class="modal-box" onclick="event.stopPropagation()">
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
+            <div>
+                <p style="font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Send to Recruiter</p>
+                <h2 style="font-size:1.2rem;font-weight:700;color:var(--text);">Recruiter Email Generator</h2>
+            </div>
+            <button onclick="closeRecruiterCard()" style="background:none;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer;padding:4px;transition:color .2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--muted)'">✕</button>
+        </div>
+
+        <!-- Subject line -->
+        <div style="margin-bottom:1rem;">
+            <p style="font-size:.7rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">Subject Line</p>
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;display:flex;justify-content:space-between;align-items:center;gap:1rem;">
+                <p id="emailSubject" style="font-size:.88rem;color:var(--text);"></p>
+                <button onclick="copySubject()" style="background:none;border:1px solid var(--border);border-radius:6px;padding:5px 10px;font-size:.7rem;color:var(--muted);cursor:pointer;white-space:nowrap;transition:all .2s;" onmouseover="this.style.borderColor='var(--text)';this.style.color='var(--text)'" onmouseout="this.style.borderColor='var(--border)';this.style.color='var(--muted)'">Copy</button>
+            </div>
+        </div>
+
+        <!-- Email body -->
+        <div style="margin-bottom:1.25rem;">
+            <p style="font-size:.7rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px;">Email Body</p>
+            <div style="background:var(--card);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px;position:relative;">
+                <p id="emailBody" style="font-size:.88rem;color:var(--text);line-height:1.8;white-space:pre-line;"></p>
+            </div>
+        </div>
+
+        <!-- Actions -->
+        <div style="display:flex;gap:.75rem;">
+            <button class="btn-primary" onclick="copyFullEmail()" style="flex:1;justify-content:center;" id="copyEmailBtn">
+                Copy Full Email
+            </button>
+            <button class="btn-ghost" onclick="closeRecruiterCard()" style="padding:12px 20px;">
+                Close
+            </button>
+        </div>
+
+        <p style="font-size:.72rem;color:var(--muted);text-align:center;margin-top:1rem;">Personalise before sending — make it yours.</p>
+    </div>
+</div>
+
     <!-- FOOTER -->
     <footer class="profile-footer">
         <div class="container">
             <p>Built by <a href="https://x.com/he_is_rashmon" target="_blank">@he_is_rashmon</a> · <a href="index.html">StackStory</a></p>
         </div>
     </footer>
-
-    <script src="utilis.js"></script>
     <script src="api.js"></script>
     <script src="render.js"></script>
     <script src="profile.js"></script>
+    <script src="utilis.js"></script>
+    
+    
 </body>
 </html>
