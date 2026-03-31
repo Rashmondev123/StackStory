@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>StackStory — Compare Two Developers</title>
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="landing.css">
+    <link rel="stylesheet" href="compare.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="container navbar-inner">
+            <a href="index.html" class="navbar-logo">
+                <span class="logo-icon">✦</span>
+                StackStory
+            </a>
+            <nav class="hide-mobile" style="display:flex;gap:2.5rem;">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="compare.html" class="nav-link" style="color:var(--text);">Compare Devs</a>
+                <a href="https://github.com" target="_blank" class="nav-link">GitHub</a>
+            </nav>
+            <!-- BURGER BUTTON -->
+            <button class="show-mobile burger" id="burger" aria-label="Menu"
+                style="background:none;border:none;color:var(--text);cursor:pointer;flex-direction:column;gap:5px;padding:4px;">
+                <span style="display:block;width:22px;height:1.5px;background:var(--text);border-radius:2px;"></span>
+                <span style="display:block;width:22px;height:1.5px;background:var(--text);border-radius:2px;"></span>
+                <span style="display:block;width:14px;height:1.5px;background:var(--text);border-radius:2px;"></span>
+            </button>
+        </div>
+
+        <!-- MOBILE MENU — outside navbar-inner -->
+        <div id="mobile-menu" class="mobile-menu">
+            <a href="index.html" class="mobile-nav-link">Home</a>
+            <a href="compare.html" class="mobile-nav-link">Compare Devs</a>
+            <a href="https://github.com" target="_blank" class="mobile-nav-link">GitHub</a>
+        </div>
+
+        <div class="divider"></div>
+    </header>
+
+    <!-- HERO -->
+    <section class="compare-hero">
+        <div class="container compare-hero-inner">
+            <p class="section-label" style="text-align:center;">Developer Compatibility</p>
+            <h1 class="compare-title">How well do two developers work together?</h1>
+            <p class="compare-sub">Enter two GitHub usernames. We analyse their personalities, skills, and work styles — then generate a team compatibility score.</p>
+
+            <!-- Search inputs -->
+            <div class="compare-inputs">
+                <div class="compare-input-wrap">
+                    <p class="compare-input-label">Developer 1</p>
+                    <div class="search-bar">
+                        <span class="search-icon">⌕</span>
+                        <input type="text" id="dev1Input"
+                            placeholder="GitHub username..."
+                            autocomplete="off" spellcheck="false"
+                            onkeydown="if(event.key==='Enter')runCompare()">
+                    </div>
+                </div>
+
+                <div class="compare-vs">VS</div>
+
+                <div class="compare-input-wrap">
+                    <p class="compare-input-label">Developer 2</p>
+                    <div class="search-bar">
+                        <span class="search-icon">⌕</span>
+                        <input type="text" id="dev2Input"
+                            placeholder="GitHub username..."
+                            autocomplete="off" spellcheck="false"
+                            onkeydown="if(event.key==='Enter')runCompare()">
+                    </div>
+                </div>
+            </div>
+
+            <button class="btn-primary compare-btn" onclick="runCompare()">
+                Compare Developers →
+            </button>
+
+            <p class="compare-hint">Try: <span onclick="fillExample('torvalds','gaearon')">torvalds vs gaearon</span> · <span onclick="fillExample('sindresorhus','tj')">sindresorhus vs tj</span></p>
+        </div>
+    </section>
+
+    <!-- LOADING -->
+    <div class="compare-loading" id="compareLoading" style="display:none;">
+        <div class="loading-spinner"></div>
+        <p>Analysing compatibility...</p>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="compare-results" id="compareResults" style="display:none;">
+        <div class="container">
+
+            <!-- Compatibility Score -->
+            <div class="compat-score-card" id="compatScoreCard"></div>
+
+            <!-- Team Narrative -->
+            <div class="team-narrative" id="teamNarrative"></div>
+
+            <!-- Side by side profiles -->
+            <div class="compare-grid">
+                <div class="dev-card" id="dev1Card"></div>
+                <div class="dev-card" id="dev2Card"></div>
+            </div>
+
+            <!-- Shared languages -->
+            <div class="shared-section" id="sharedSection"></div>
+
+            <!-- Share button -->
+            <div style="text-align:center;margin-top:2.5rem;">
+                <button class="btn-primary" onclick="shareCompare()">
+                    Share This Comparison →
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ERROR -->
+    <div class="compare-error" id="compareError" style="display:none;">
+        <p>⚠️ Couldn't load one or both profiles. Check the usernames and try again.</p>
+        <button class="btn-ghost" onclick="resetCompare()" style="margin-top:1rem;">Try Again</button>
+    </div>
+
+    <footer style="border-top:1px solid var(--border);padding:2rem 0;text-align:center;margin-top:4rem;">
+        <p style="font-size:.78rem;color:var(--muted);">© 2025 STACKSTORY — <a href="index.html" style="color:var(--text-secondary);">Back to Home</a></p>
+    </footer>
+    <script src="utilis.js"></script> 
+    <script src="api.js"></script>
+    <script src="compare.js"></script>
+</body>
+</html>

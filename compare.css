@@ -1,0 +1,308 @@
+/* ================================
+   STACKSTORY — COMPARE PAGE
+   compare.css
+================================ */
+
+/* ---- HERO ---- */
+.compare-hero {
+    padding: 80px 0 60px;
+    text-align: center;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+}
+
+.compare-hero-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.25rem;
+}
+
+.compare-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 400;
+    letter-spacing: .03em;
+    color: var(--text);
+    max-width: 700px;
+    line-height: 1.1;
+}
+
+.compare-sub {
+    font-size: .95rem;
+    color: var(--text-secondary);
+    max-width: 480px;
+    line-height: 1.75;
+}
+
+.compare-inputs {
+    display: flex;
+    align-items: flex-end;
+    gap: 1.25rem;
+    width: 100%;
+    max-width: 700px;
+    margin-top: .5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.compare-input-wrap {
+    flex: 1;
+    min-width: 200px;
+    max-width: 280px;
+}
+
+.compare-input-label {
+    font-size: .72rem;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    margin-bottom: 8px;
+    text-align: left;
+}
+
+.compare-vs {
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    color: var(--muted);
+    letter-spacing: .1em;
+    padding-bottom: 8px;
+    flex-shrink: 0;
+}
+
+.compare-btn { margin-top: .25rem; }
+
+.compare-hint {
+    font-size: .77rem;
+    color: var(--muted);
+}
+
+.compare-hint span {
+    color: var(--text-secondary);
+    font-weight: 600;
+    cursor: pointer;
+    border-bottom: 1px dashed var(--border-dark);
+    transition: color .2s;
+}
+.compare-hint span:hover { color: var(--text); }
+
+/* ---- LOADING ---- */
+.compare-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem;
+    gap: 1rem;
+    color: var(--text-secondary);
+    font-size: .9rem;
+}
+
+/* ---- RESULTS ---- */
+.compare-results { padding: 3rem 0 4rem; }
+
+/* ---- COMPATIBILITY SCORE CARD ---- */
+.compat-score-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 2.5rem;
+    text-align: center;
+    margin-bottom: 1.25rem;
+}
+
+.compat-number {
+    font-family: var(--font-display);
+    font-size: 6rem;
+    line-height: 1;
+    letter-spacing: .02em;
+}
+
+.compat-label {
+    font-size: .7rem;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .15em;
+    margin-bottom: .5rem;
+}
+
+.compat-verdict {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-top: .5rem;
+}
+
+.compat-bar-wrap {
+    width: 100%;
+    max-width: 400px;
+    height: 6px;
+    background: var(--border);
+    border-radius: 99px;
+    margin: 1rem auto 0;
+    overflow: hidden;
+}
+
+.compat-bar {
+    height: 100%;
+    border-radius: 99px;
+    transition: width 1s ease;
+}
+
+/* ---- TEAM NARRATIVE ---- */
+.team-narrative {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem 2rem;
+    margin-bottom: 1.25rem;
+}
+
+.narrative-label {
+    font-size: .7rem;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    margin-bottom: .75rem;
+}
+
+.narrative-text {
+    font-size: 1rem;
+    color: var(--text);
+    line-height: 1.75;
+    font-style: italic;
+}
+
+/* ---- SIDE BY SIDE DEV CARDS ---- */
+.compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+    margin-bottom: 1.25rem;
+}
+
+.dev-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+}
+
+.dev-card-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 1.25rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.dev-avatar {
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    border: 2px solid var(--border);
+    flex-shrink: 0;
+}
+
+.dev-card-name {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 2px;
+}
+
+.dev-card-login {
+    font-size: .78rem;
+    color: var(--muted);
+}
+
+.dev-stat-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: .6rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: .83rem;
+}
+
+.dev-stat-row:last-child { border-bottom: none; }
+
+.dev-stat-key { color: var(--text-secondary); }
+.dev-stat-val { font-weight: 600; color: var(--text); }
+.dev-stat-win { color: #16A34A; font-weight: 700; }
+
+.dev-personality-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 1rem;
+    padding: 6px 12px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 99px;
+    font-size: .75rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+}
+
+/* ---- SHARED LANGUAGES ---- */
+.shared-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+}
+
+.shared-title {
+    font-size: .7rem;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    margin-bottom: 1rem;
+}
+
+.shared-langs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+}
+
+.shared-lang-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 99px;
+    font-size: .78rem;
+    font-weight: 600;
+    color: var(--text);
+}
+
+.lang-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* ---- ERROR ---- */
+.compare-error {
+    text-align: center;
+    padding: 4rem 2rem;
+    color: var(--text-secondary);
+    font-size: .9rem;
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 640px) {
+    .compare-inputs { flex-direction: column; align-items: stretch; }
+    .compare-input-wrap { max-width: 100%; }
+    .compare-vs { text-align: center; padding: 0; }
+    .compare-grid { grid-template-columns: 1fr; }
+}
