@@ -531,3 +531,113 @@
     box-shadow: var(--shadow-lg);
 }
 .modal-box::-webkit-scrollbar { display: none; }
+
+
+
+---- STACKSTORY SCORE ---- */
+.score-section {
+    padding: 1.5rem 0;
+    background: var(--surface);
+    border-top: 1px solid var(--border);
+}
+
+.score-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.75rem;
+    margin-bottom: 1rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.score-label {
+    font-size: .7rem;
+    font-weight: 700;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    margin-bottom: .35rem;
+}
+
+.score-total-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: 4px;
+    margin-bottom: .35rem;
+}
+
+.score-total {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: var(--text);
+    letter-spacing: .02em;
+}
+
+.score-max {
+    font-size: 1rem;
+    color: var(--muted);
+    font-weight: 500;
+}
+
+.score-grade {
+    font-size: .9rem;
+    font-weight: 700;
+}
+
+.score-ring { flex-shrink: 0; }
+
+.score-breakdown {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.score-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.score-row-label {
+    font-size: .8rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    width: 90px;
+    flex-shrink: 0;
+}
+
+.score-bar-wrap {
+    flex: 1;
+    height: 6px;
+    background: var(--border);
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.score-bar {
+    height: 100%;
+    border-radius: 99px;
+    transition: width 1s ease;
+}
+
+.score-row-val {
+    font-size: .78rem;
+    font-weight: 600;
+    color: var(--muted);
+    width: 40px;
+    text-align: right;
+    flex-shrink: 0;
+}
+
+@media (max-width: 480px) {
+    .score-header { flex-direction: column; align-items: flex-start; }
+   }
