@@ -1,4 +1,3 @@
-
 // ================================
 //  STACKSTORY — UTILS
 //  utilis.js
@@ -168,4 +167,102 @@ function generateSummary(user, repos, languages, totalStars, personality) {
     const s1Index = joinYear < 2018 ? 2 : joinYear < 2021 ? 1 : 0;
 
     return `${sentence1Options[s1Index]} ${sentence2} ${sentence3}`;
+}
+
+// ---- STACKSTORY SCORE ----
+function calculateScore(user, repos, languages, totalStars) {
+
+    // ---- OUTPUT SCORE (0-25) ----
+    // based on repo count and recent activity
+    let outputScore = 0;
+    const repoCount = user.public_repos;
+    if (repoCount >= 30) outputScore = 25;
+    else if (repoCount >= 20) outputScore = 22;
+    else if (repoCount >= 10) outputScore = 18;
+    else if (repoCount >= 5) outputScore = 13;
+    else if (repoCount >= 1) outputScore = 8;
+
+    // ---- IMPACT SCORE (0-25) ----
+    // based on stars and followers
+    let impactScore = 0;
+
+    // stars contribution (max 15)
+    if (totalStars >= 10000) impactScore += 15;
+    else if (totalStars >= 1000) impactScore += 12;
+    else if (totalStars >= 100) impactScore += 9;
+    else if (totalStars >= 10) impactScore += 6;
+    else if (totalStars >= 1) impactScore += 3;
+
+    // followers contribution (max 10)
+    if (user.followers >= 10000) impactScore += 10;
+    else if (user.followers >= 1000) impactScore += 8;
+    else if (user.followers >= 100) impactScore += 6;
+    else if (user.followers >= 10) impactScore += 4;
+    else if (user.followers >= 1) impactScore += 2;
+
+    // ---- CONSISTENCY SCORE (0-25) ----
+    // based on repo descriptions, README presence
+    let consistencyScore = 0;
+    const withDesc = repos.filter(r => r.description).length;
+    const descRatio = repos.length > 0 ? withDesc / repos.length : 0;
+
+    if (descRatio >= 0.8) consistencyScore += 15;
+    else if (descRatio >= 0.6) consistencyScore += 12;
+    else if (descRatio >= 0.4) consistencyScore += 9;
+    else if (descRatio >= 0.2) consistencyScore += 6;
+    else consistencyScore += 2;
+
+    // account age contribution (max 10)
+    const yearsActive = new Date().getFullYear() -
+        new Date(user.created_at).getFullYear();
+    if (yearsActive >= 8) consistencyScore += 10;
+    else if (yearsActive >= 5) consistencyScore += 8;
+    else if (yearsActive >= 3) consistencyScore += 6;
+    else if (yearsActive >= 1) consistencyScore += 4;
+    else consistencyScore += 2;
+
+    // ---- RANGE SCORE (0-25) ----
+    // based on language variety and repo diversity
+    let rangeScore = 0;
+    const langCount = Object.keys(languages).length;
+
+    if (langCount >= 8) rangeScore += 15;
+    else if (langCount >= 5) rangeScore += 12;
+    else if (langCount >= 3) rangeScore += 9;
+    else if (langCount >= 2) rangeScore += 6;
+    else if (langCount >= 1) rangeScore += 3;
+
+    // repo variety (max 10)
+    const activeRepos = repos.filter(r => r.size > 0).length;
+    const activeRatio = repos.length > 0 ? activeRepos / repos.length : 0;
+    if (activeRatio >= 0.8) rangeScore += 10;
+    else if (activeRatio >= 0.6) rangeScore += 8;
+    else if (activeRatio >= 0.4) rangeScore += 6;
+    else if (activeRatio >= 0.2) rangeScore += 4;
+    else rangeScore += 2;
+
+    // ---- TOTAL ----
+    const total = outputScore + impactScore + consistencyScore + rangeScore;
+
+    // ---- GRADE ----
+    let grade, gradeLabel;
+    if (total >= 90) { grade = 'A+'; gradeLabel = 'Exceptional'; }
+    else if (total >= 80) { grade = 'A'; gradeLabel = 'Strong Candidate'; }
+    else if (total >= 70) { grade = 'B+'; gradeLabel = 'Solid Profile'; }
+    else if (total >= 60) { grade = 'B'; gradeLabel = 'Good Foundation'; }
+    else if (total >= 50) { grade = 'C+'; gradeLabel = 'Developing'; }
+    else if (total >= 40) { grade = 'C'; gradeLabel = 'Early Stage'; }
+    else { grade = 'D'; gradeLabel = 'Just Getting Started'; }
+
+    return {
+        total,
+        grade,
+        gradeLabel,
+        breakdown: {
+            output: outputScore,
+            impact: impactScore,
+            consistency: consistencyScore,
+            range: rangeScore
+        }
+    };
 }
