@@ -201,6 +201,73 @@ function renderActivity(events) {
     }).join('');
 }
 
+// ---- RENDER STACKSTORY SCORE ----
+function renderScore(score) {
+    const container = document.getElementById('scoreCard');
+    if (!container) return;
+
+    const { total, grade, gradeLabel, breakdown } = score;
+
+    // color based on grade
+    const gradeColor = total >= 80 ? '#16A34A'
+        : total >= 60 ? '#CA8A04'
+        : '#DC2626';
+
+    container.innerHTML = `
+        <div class="score-header">
+            <div class="score-left">
+                <p class="score-label">StackStory Score</p>
+                <div class="score-total-wrap">
+                    <span class="score-total">${total}</span>
+                    <span class="score-max">/100</span>
+                </div>
+                <p class="score-grade" style="color:${gradeColor};">
+                    ${grade} — ${gradeLabel}
+                </p>
+            </div>
+            <div class="score-ring">
+                <svg width="90" height="90" viewBox="0 0 90 90">
+                    <circle cx="45" cy="45" r="38"
+                        fill="none" stroke="var(--border)"
+                        stroke-width="7"/>
+                    <circle cx="45" cy="45" r="38"
+                        fill="none" stroke="${gradeColor}"
+                        stroke-width="7"
+                        stroke-linecap="round"
+                        stroke-dasharray="${2 * Math.PI * 38}"
+                        stroke-dashoffset="${2 * Math.PI * 38 * (1 - total / 100)}"
+                        transform="rotate(-90 45 45)"
+                        style="transition: stroke-dashoffset 1s ease;"/>
+                    <text x="45" y="50" text-anchor="middle"
+                        font-size="18" font-weight="700"
+                        fill="var(--text)" font-family="'Bebas Neue',sans-serif"
+                        letter-spacing="1">${total}</text>
+                </svg>
+            </div>
+        </div>
+
+        <div class="score-breakdown">
+            ${[
+                { label: 'Output', key: 'output', val: breakdown.output },
+                { label: 'Impact', key: 'impact', val: breakdown.impact },
+                { label: 'Consistency', key: 'consistency', val: breakdown.consistency },
+                { label: 'Range', key: 'range', val: breakdown.range },
+            ].map(item => `
+                <div class="score-row">
+                    <span class="score-row-label">${item.label}</span>
+                    <div class="score-bar-wrap">
+                        <div class="score-bar"
+                            style="width:${(item.val / 25) * 100}%;
+                            background:${gradeColor};">
+                        </div>
+                    </div>
+                    <span class="score-row-val">${item.val}/25</span>
+                </div>
+            `).join('')}
+        </div>
+    `;
+}
+
 // ---- SHARE PROFILE ----
 function shareProfile() {
     const url = window.location.href;
@@ -233,7 +300,6 @@ function showProfile() {
     document.getElementById('errorScreen').style.display = 'none';
     document.getElementById('profileMain').style.display = 'block';
 }
-
 
 
 // ---- RECRUITER CARD ----
