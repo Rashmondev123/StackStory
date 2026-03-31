@@ -27,6 +27,7 @@
             <nav class="navbar-links">
                 <a href="#how-it-works">How it Works</a>
                 <a href="#examples">Examples</a>
+                <a href="compare.html">Compare Devs</a>
                 <a href="https://github.com" target="_blank">GitHub</a>
             </nav>
 
@@ -46,6 +47,7 @@
         <div class="mobile-menu" id="mobileMenu">
             <a href="#how-it-works" onclick="closeMobileMenu()">How it Works</a>
             <a href="#examples" onclick="closeMobileMenu()">Examples</a>
+            <a href="compare.html" onclick="closeMobileMenu()">Compare Devs</a>
             <a href="https://github.com" target="_blank">GitHub</a>
             <a href="#hero-search" class="btn-primary" onclick="closeMobileMenu()">Try it Free</a>
         </div>
@@ -98,6 +100,13 @@
             <p class="hero-proof">
                 Trusted by <strong>500+ developers</strong> and recruiters worldwide
             </p>
+            <p style="font-size:.78rem;color:var(--muted);">
+    Want to compare two developers? 
+    <a href="compare.html" style="color:var(--text-secondary);border-bottom:1px solid var(--border);transition:color .2s;" onmouseover="this.style.color='var(--text)'" onmouseout="this.style.color='var(--text-secondary)'">
+        Try Compare Devs →
+    </a>
+</p>
+
 
         </div>
     </section>
@@ -339,9 +348,21 @@
         </div>
     </div>
 </section>
-
+    <script src="config.js"></script>
     <script src="utilis.js"></script>
     <script src="landing.js"></script>
     <script src="api.js"></script>
+
+    <script>
+const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+    });
+}, { threshold: 0.08 });
+document.querySelectorAll('.problem-card, .step-card, .value-card, .proof-stat, .next-card').forEach(el => {
+    el.classList.add('reveal');
+    obs.observe(el);
+});
+</script>
 </body>
 </html>
