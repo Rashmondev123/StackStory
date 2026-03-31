@@ -16,29 +16,36 @@
             <a href="index.html" class="navbar-logo">
                 <span class="logo-icon">✦</span>
                 StackStory
-            </a>
-            <nav class="hide-mobile" style="display:flex;gap:2.5rem;">
-                <a href="index.html" class="nav-link">Home</a>
-                <a href="compare.html" class="nav-link" style="color:var(--text);">Compare Devs</a>
-                <a href="https://github.com" target="_blank" class="nav-link">GitHub</a>
+            </a> 
+            -- Desktop Nav -->
+            <nav class="navbar-links">
+                <a href="#how-it-works">How it Works</a>
+                <a href="#examples">Examples</a>
+                <a href="compare.html">Compare Devs</a>
+                <a href="https://github.com" target="_blank">GitHub</a>
             </nav>
-            <!-- BURGER BUTTON -->
-            <button class="show-mobile burger" id="burger" aria-label="Menu"
-                style="background:none;border:none;color:var(--text);cursor:pointer;flex-direction:column;gap:5px;padding:4px;">
-                <span style="display:block;width:22px;height:1.5px;background:var(--text);border-radius:2px;"></span>
-                <span style="display:block;width:22px;height:1.5px;background:var(--text);border-radius:2px;"></span>
-                <span style="display:block;width:14px;height:1.5px;background:var(--text);border-radius:2px;"></span>
+
+            <!-- CTA -->
+            <a href="#hero-search" class="btn-primary navbar-cta">Try it Free</a>
+
+            <!-- Mobile Burger -->
+            <button class="burger" id="burger" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
             </button>
+
         </div>
 
-        <!-- MOBILE MENU — outside navbar-inner -->
-        <div id="mobileMenu" class="mobile-menu">
-            <a href="index.html" class="mobile-nav-link">Home</a>
-            <a href="compare.html" class="mobile-nav-link">Compare Devs</a>
-            <a href="https://github.com" target="_blank" class="mobile-nav-link">GitHub</a>
+        <!-- Mobile Menu -->
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="#how-it-works" onclick="closeMobileMenu()">How it Works</a>
+            <a href="#examples" onclick="closeMobileMenu()">Examples</a>
+            <a href="compare.html" onclick="closeMobileMenu()">Compare Devs</a>
+            <a href="https://github.com" target="_blank">GitHub</a>
+            <a href="#hero-search" class="btn-primary" onclick="closeMobileMenu()">Try it Free</a>
         </div>
-
-        <div class="divider"></div>
+            
     </header>
 
     <!-- HERO -->
