@@ -75,6 +75,7 @@ async function fetchAllData(username) {
 
         // Step 9 — human summary
         // built from real data, no API needed
+        // Step 9 — human summary
         const aiSummary = generateSummary(
             user,
             repos,
@@ -82,6 +83,9 @@ async function fetchAllData(username) {
             totalStars,
             personality
         );
+
+        // Step 10 — credibility score
+        const score = calculateScore(user, repos, languages, totalStars);
 
         return {
             user,
@@ -91,7 +95,8 @@ async function fetchAllData(username) {
             totalStars,
             topRepos,
             personality,
-            aiSummary
+            aiSummary,
+            score
         };
 
     } catch (error) {
