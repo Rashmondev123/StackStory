@@ -20,7 +20,7 @@
 
 .compare-title {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-size: clamp(1.8rem, 5vw, 3.5rem);
     font-weight: 400;
     letter-spacing: .03em;
     color: var(--text);
@@ -71,11 +71,18 @@
     flex-shrink: 0;
 }
 
-.compare-btn { margin-top: .25rem; }
+.compare-btn {
+    margin-top: .25rem;
+    width: 100%;
+    max-width: 340px;
+    justify-content: center;
+}
 
 .compare-hint {
     font-size: .77rem;
     color: var(--muted);
+    padding: 0 1rem;
+    text-align: center;
 }
 
 .compare-hint span {
@@ -93,7 +100,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 4rem;
+    padding: 4rem 2rem;
     gap: 1rem;
     color: var(--text-secondary);
     font-size: .9rem;
@@ -107,14 +114,14 @@
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 2.5rem;
+    padding: 2rem 1.5rem;
     text-align: center;
     margin-bottom: 1.25rem;
 }
 
 .compat-number {
     font-family: var(--font-display);
-    font-size: 6rem;
+    font-size: clamp(3.5rem, 12vw, 6rem);
     line-height: 1;
     letter-spacing: .02em;
 }
@@ -155,7 +162,7 @@
     background: var(--bg);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 1.75rem 2rem;
+    padding: 1.5rem;
     margin-bottom: 1.25rem;
 }
 
@@ -169,7 +176,7 @@
 }
 
 .narrative-text {
-    font-size: 1rem;
+    font-size: .95rem;
     color: var(--text);
     line-height: 1.75;
     font-style: italic;
@@ -187,35 +194,37 @@
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 1.75rem;
+    padding: 1.5rem;
+    min-width: 0;
 }
 
 .dev-card-header {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: .75rem;
     margin-bottom: 1.25rem;
     padding-bottom: 1.25rem;
     border-bottom: 1px solid var(--border);
 }
 
 .dev-avatar {
-    width: 52px;
-    height: 52px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     border: 2px solid var(--border);
     flex-shrink: 0;
 }
 
 .dev-card-name {
-    font-size: 1rem;
+    font-size: .9rem;
     font-weight: 700;
     color: var(--text);
     margin-bottom: 2px;
+    word-break: break-word;
 }
 
 .dev-card-login {
-    font-size: .78rem;
+    font-size: .75rem;
     color: var(--muted);
 }
 
@@ -223,15 +232,19 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: .6rem 0;
+    padding: .55rem 0;
     border-bottom: 1px solid var(--border);
-    font-size: .83rem;
+    font-size: .8rem;
+    gap: .5rem;
 }
 
-.dev-stat-row:last-child { border-bottom: none; }
+.dev-stat-row:last-of-type { border-bottom: none; }
 
-.dev-stat-key { color: var(--text-secondary); }
-.dev-stat-val { font-weight: 600; color: var(--text); }
+.dev-stat-key {
+    color: var(--text-secondary);
+    flex-shrink: 0;
+}
+.dev-stat-val { font-weight: 600; color: var(--text); text-align: right; }
 .dev-stat-win { color: #16A34A; font-weight: 700; }
 
 .dev-personality-badge {
@@ -239,11 +252,11 @@
     align-items: center;
     gap: 6px;
     margin-top: 1rem;
-    padding: 6px 12px;
+    padding: 5px 10px;
     background: var(--card);
     border: 1px solid var(--border);
     border-radius: 99px;
-    font-size: .75rem;
+    font-size: .72rem;
     font-weight: 600;
     color: var(--text-secondary);
 }
@@ -253,7 +266,7 @@
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius);
-    padding: 1.75rem;
+    padding: 1.5rem;
 }
 
 .shared-title {
@@ -275,11 +288,11 @@
     display: inline-flex;
     align-items: center;
     gap: 6px;
-    padding: 5px 12px;
+    padding: 5px 10px;
     background: var(--bg);
     border: 1px solid var(--border);
     border-radius: 99px;
-    font-size: .78rem;
+    font-size: .75rem;
     font-weight: 600;
     color: var(--text);
 }
@@ -300,9 +313,43 @@
 }
 
 /* ---- RESPONSIVE ---- */
-@media (max-width: 640px) {
-    .compare-inputs { flex-direction: column; align-items: stretch; }
-    .compare-input-wrap { max-width: 100%; }
-    .compare-vs { text-align: center; padding: 0; }
-    .compare-grid { grid-template-columns: 1fr; }
+@media (max-width: 768px) {
+    .compare-hero { padding: 60px 0 40px; }
+
+    .compare-inputs {
+        flex-direction: column;
+        align-items: stretch;
+        max-width: 100%;
+        gap: .75rem;
+    }
+
+    .compare-input-wrap {
+        max-width: 100%;
+        min-width: unset;
+    }
+
+    .compare-vs {
+        text-align: center;
+        padding: 0;
+        font-size: 1.1rem;
+    }
+
+    .compare-btn {
+        max-width: 100%;
+    }
+
+    .compare-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .compat-score-card { padding: 1.5rem 1rem; }
+
+    .compare-results { padding: 2rem 0 3rem; }
+}
+
+@media (max-width: 480px) {
+    .dev-stat-row { font-size: .75rem; }
+    .dev-card { padding: 1.25rem 1rem; }
+    .team-narrative { padding: 1.25rem; }
+    .shared-section { padding: 1.25rem; }
 }
