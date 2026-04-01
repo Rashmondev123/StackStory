@@ -382,3 +382,91 @@ function copyFullEmail() {
 document.addEventListener('keydown', e => {
     if (e.key === 'Escape') closeRecruiterCard();
 });
+
+// ---- RENDER PORTFOLIO CHECKER ----
+function renderPortfolioChecker(user, repos) {
+    const container = document.getElementById('portfolioChecker');
+    if (!container) return;
+
+    const result = checkPortfolioReady(user, repos);
+    const { score, grade, gradeLabel, gradeColor, checks, failedTips } = result;
+
+    // group checks by category
+    const categories = [...new Set(checks.map(c => c.category))];
+
+    container.innerHTML = `
+        <div class="checker-header">
+            <div class="checker-left">
+                <p class="checker-label">Portfolio Ready Checker</p>
+                <div class="checker-score-wrap">
+                    <span class="checker-score" style="color:${gradeColor};">
+                        ${score}
+                    </span>
+                    <span class="checker-max">/100</span>
+                </div>
+                <p class="checker-grade" style="color:${gradeColor};">
+                    ${grade} — ${gradeLabel}
+                </p>
+            </div>
+            <div class="checker-ring">
+                <svg width="90" height="90" viewBox="0 0 90 90">
+                    <circle cx="45" cy="45" r="38"
+                        fill="none" stroke="var(--border)"
+                        stroke-width="7"/>
+                    <circle cx="45" cy="45" r="38"
+                        fill="none" stroke="${gradeColor}"
+                        stroke-width="7"
+                        stroke-linecap="round"
+                        stroke-dasharray="${2 * Math.PI * 38}"
+                        stroke-dashoffset="${2 * Math.PI * 38 * (1 - score / 100)}"
+                        transform="rotate(-90 45 45)"
+                        style="transition:stroke-dashoffset 1s ease;"/>
+                    <text x="45" y="50" text-anchor="middle"
+                        font-size="18" font-weight="700"
+                        fill="var(--text)"
+                        font-family="'Bebas Neue',sans-serif"
+                        letter-spacing="1">${score}</text>
+                </svg>
+            </div>
+        </div>
+
+        <!-- CHECKS BY CATEGORY -->
+        <div class="checker-checks">
+            ${categories.map(cat => `
+                <div class="checker-category">
+                    <p class="checker-cat-label">${cat}</p>
+                    ${checks.filter(c => c.category === cat).map(check => `
+                        <div class="checker-item">
+                            <span class="checker-icon">
+                                ${check.passed ? '✓' : '✗'}
+                            </span>
+                            <span class="checker-item-label 
+                                ${check.passed ? 'passed' : 'failed'}">
+                                ${check.label}
+                            </span>
+                        </div>
+                    `).join('')}
+                </div>
+            `).join('')}
+        </div>
+
+        <!-- TIPS FOR IMPROVEMENT -->
+        ${failedTips.length > 0 ? `
+        <div class="checker-tips">
+            <p class="checker-tips-label">
+                How to improve your score
+            </p>
+            ${failedTips.map(tip => `
+                <div class="checker-tip">
+                    <span class="tip-arrow">→</span>
+                    <span>${tip}</span>
+                </div>
+            `).join('')}
+        </div>` : `
+        <div class="checker-tips">
+            <p style="font-size:.88rem;color:var(--green);font-weight:600;">
+                ✓ Your portfolio is looking strong. Keep shipping.
+            </p>
+        </div>`}
+    `;
+                        }
