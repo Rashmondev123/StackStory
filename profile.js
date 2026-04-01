@@ -36,6 +36,7 @@ async function loadProfile() {
         renderStats(data.user, data.repos, data.totalStars);
         renderPersonality(data.personality, data.user, data.totalStars);
         renderScore(data.score);
+        renderPortfolioChecker(data.user, data.repos);
         renderRepos(data.topRepos);
         renderLanguages(data.languages);
         renderActivity(data.events);
