@@ -266,3 +266,175 @@ function calculateScore(user, repos, languages, totalStars) {
         }
     };
 }
+
+
+// ---- PORTFOLIO READY CHECKER ----
+function checkPortfolioReady(user, repos) {
+
+    const checks = [];
+    let totalScore = 0;
+    const maxScore = 100;
+
+    // ---- PROFILE CHECKS ----
+
+    // Bio filled out (10 points)
+    const hasBio = !!user.bio;
+    checks.push({
+        category: 'Profile',
+        label: 'Bio filled out',
+        passed: hasBio,
+        points: 10,
+        tip: 'Add a bio to your GitHub profile — recruiters read it first.'
+    });
+    if (hasBio) totalScore += 10;
+
+    // Location set (5 points)
+    const hasLocation = !!user.location;
+    checks.push({
+        category: 'Profile',
+        label: 'Location set',
+        passed: hasLocation,
+        points: 5,
+        tip: 'Add your location — it helps recruiters find local talent.'
+    });
+    if (hasLocation) totalScore += 5;
+
+    // Blog/website link (5 points)
+    const hasWebsite = !!user.blog;
+    checks.push({
+        category: 'Profile',
+        label: 'Website or portfolio link',
+        passed: hasWebsite,
+        points: 5,
+        tip: 'Add a link to your portfolio or personal site.'
+    });
+    if (hasWebsite) totalScore += 5;
+
+    // ---- REPO CHECKS ----
+    const publicRepos = repos.slice(0, 10);
+    const totalRepos = publicRepos.length;
+
+    if (totalRepos > 0) {
+
+        // Repos with descriptions (20 points)
+        const withDesc = publicRepos.filter(r => r.description).length;
+        const descRatio = withDesc / totalRepos;
+        const descPoints = Math.round(descRatio * 20);
+        const descPassed = descRatio >= 0.6;
+        checks.push({
+            category: 'Repositories',
+            label: `Repo descriptions (${withDesc}/${totalRepos} repos)`,
+            passed: descPassed,
+            points: 20,
+            earned: descPoints,
+            tip: `Add descriptions to ${totalRepos - withDesc} more repos to improve this score.`
+        });
+        totalScore += descPoints;
+
+        // Repos with topics/tags (15 points)
+        const withTopics = publicRepos.filter(
+            r => r.topics && r.topics.length > 0
+        ).length;
+        const topicsRatio = withTopics / totalRepos;
+        const topicsPoints = Math.round(topicsRatio * 15);
+        const topicsPassed = topicsRatio >= 0.4;
+        checks.push({
+            category: 'Repositories',
+            label: `Repo topics/tags (${withTopics}/${totalRepos} repos)`,
+            passed: topicsPassed,
+            points: 15,
+            earned: topicsPoints,
+            tip: 'Add topics to your repos so they show up in GitHub search.'
+        });
+        totalScore += topicsPoints;
+
+        // No dead repos (repos with no activity) (10 points)
+        const activeRepos = publicRepos.filter(r => r.size > 0).length;
+        const activeRatio = activeRepos / totalRepos;
+        const activePoints = Math.round(activeRatio * 10);
+        const activePassed = activeRatio >= 0.7;
+        checks.push({
+            category: 'Repositories',
+            label: `Active repos (${activeRepos}/${totalRepos} repos)`,
+            passed: activePassed,
+            points: 10,
+            earned: activePoints,
+            tip: 'Delete or archive empty repos — they make your profile look cluttered.'
+        });
+        totalScore += activePoints;
+
+        // No repos named "test" or "untitled" (10 points)
+        const badNames = ['test', 'untitled', 'repo', 
+            'project', 'temp', 'new', 'hello', 'demo'];
+        const cleanRepos = publicRepos.filter(r =>
+            !badNames.some(bad => 
+                r.name.toLowerCase().includes(bad))
+        ).length;
+        const cleanRatio = cleanRepos / totalRepos;
+        const cleanPoints = Math.round(cleanRatio * 10);
+        const cleanPassed = cleanRatio >= 0.8;
+        checks.push({
+            category: 'Repositories',
+            label: `Clean repo names (${cleanRepos}/${totalRepos} repos)`,
+            passed: cleanPassed,
+            points: 10,
+            earned: cleanPoints,
+            tip: 'Rename repos like "test" or "untitled" — they signal unfinished work.'
+        });
+        totalScore += cleanPoints;
+    }
+
+    // ---- ACTIVITY CHECKS ----
+
+    // Has starred repos (5 points)
+    const hasStars = user.public_repos > 0;
+    checks.push({
+        category: 'Activity',
+        label: 'Has public repositories',
+        passed: hasStars,
+        points: 5,
+        tip: 'Create and publish at least one real project.'
+    });
+    if (hasStars) totalScore += 5;
+
+    // Account age (5 points)
+    const joinYear = new Date(user.created_at).getFullYear();
+    const yearsActive = new Date().getFullYear() - joinYear;
+    const isEstablished = yearsActive >= 1;
+    checks.push({
+        category: 'Activity',
+        label: 'Established account (1+ years)',
+        passed: isEstablished,
+        points: 5,
+        tip: 'Keep building consistently — account age signals commitment.'
+    });
+    if (isEstablished) totalScore += 5;
+
+    // ---- GRADE ----
+    const score = Math.min(totalScore, 100);
+    let grade, gradeLabel, gradeColor;
+
+    if (score >= 90) {
+        grade = 'A+'; gradeLabel = 'Portfolio Ready';
+        gradeColor = '#16A34A';
+    } else if (score >= 75) {
+        grade = 'A'; gradeLabel = 'Almost There';
+        gradeColor = '#16A34A';
+    } else if (score >= 60) {
+        grade = 'B'; gradeLabel = 'Needs Work';
+        gradeColor = '#CA8A04';
+    } else if (score >= 40) {
+        grade = 'C'; gradeLabel = 'Big Gaps';
+        gradeColor = '#DC2626';
+    } else {
+        grade = 'D'; gradeLabel = 'Start Here';
+        gradeColor = '#DC2626';
+    }
+
+    // tips for failed checks only
+    const failedTips = checks
+        .filter(c => !c.passed)
+        .map(c => c.tip);
+
+    return { score, grade, gradeLabel, gradeColor, checks, failedTips };
+            }
