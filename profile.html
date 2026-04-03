@@ -58,15 +58,18 @@
                     <p class="user-bio" id="userBio"></p>
                     <div class="user-meta" id="userMeta"></div>
                 </div>
-                <div style="display:flex;gap:.75rem;flex-wrap:wrap;">
+            div style="display:flex;gap:.75rem;flex-wrap:wrap;">
     <button class="btn-primary share-btn" onclick="shareProfile()">
         Share Story →
     </button>
     <button class="btn-ghost recruiter-btn" onclick="openRecruiterCard()">
         Send to Recruiter ✉
     </button>
-</div>
+    <button class="btn-ghost" onclick="openCardModal()">
+        Get Dev Card ✦
+    </button>
             </div>
+            
         </section>
 
         <!-- STAT CARDS -->
@@ -158,12 +161,80 @@
     </div>
 </div>
 
+    !-- DEVELOPER CARD MODAL -->
+<div class="card-modal-overlay" id="cardModal" onclick="closeCardModal()">
+    <div class="card-modal-box" onclick="event.stopPropagation()">
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
+            <div>
+                <p style="font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:4px;">Your Developer Card</p>
+                <h2 style="font-size:1.1rem;font-weight:700;color:var(--text);">Share your story</h2>
+            </div>
+            <button onclick="closeCardModal()" style="background:none;border:none;color:var(--muted);font-size:1.3rem;cursor:pointer;">✕</button>
+        </div>
+
+        <!-- THE ACTUAL CARD -->
+        <div class="dev-share-card" id="devShareCard">
+            <div class="dsc-top">
+                <div class="dsc-logo">✦ StackStory</div>
+                <div class="dsc-avatar-wrap">
+                    <img class="dsc-avatar" id="cardAvatar" src="" alt=""/>
+                    <div class="dsc-info">
+                        <p class="dsc-name" id="cardName"></p>
+                        <p class="dsc-login" id="cardLogin"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="dsc-personality" id="cardPersonality"></div>
+
+            <div class="dsc-stats">
+                <div class="dsc-stat">
+                    <p class="dsc-stat-val" id="cardScore"></p>
+                    <p class="dsc-stat-label">Score</p>
+                </div>
+                <div class="dsc-divider"></div>
+                <div class="dsc-stat">
+                    <p class="dsc-stat-val" id="cardLang"></p>
+                    <p class="dsc-stat-label">Top Language</p>
+                </div>
+                <div class="dsc-divider"></div>
+                <div class="dsc-stat">
+                    <p class="dsc-stat-val" id="cardStars"></p>
+                    <p class="dsc-stat-label">Total Stars</p>
+                </div>
+            </div>
+
+            <p class="dsc-quote" id="cardQuote"></p>
+
+            <div class="dsc-footer">
+                stack-story-eta.vercel.app
+            </div>
+        </div>
+
+        <!-- ACTIONS -->
+        <div style="display:flex;gap:.75rem;margin-top:1.5rem;">
+            <button class="btn-primary" onclick="downloadCard()" style="flex:1;justify-content:center;" id="downloadBtn">
+                Download Card ↓
+            </button>
+            <button class="btn-ghost" onclick="closeCardModal()" style="padding:12px 20px;">
+                Close
+            </button>
+        </div>
+
+        <p style="font-size:.72rem;color:var(--muted);text-align:center;margin-top:1rem;">
+            Share on X and tag #StackStory 🔥
+        </p>
+    </div>
+</div>
+
     <!-- FOOTER -->
     <footer class="profile-footer">
         <div class="container">
             <p>Built by <a href="https://x.com/he_is_rashmon" target="_blank">@he_is_rashmon</a> · <a href="index.html">StackStory</a></p>
         </div>
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="api.js"></script>
     <script src="render.js"></script>
     <script src="profile.js"></script>
