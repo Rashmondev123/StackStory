@@ -470,3 +470,76 @@ function renderPortfolioChecker(user, repos) {
         </div>`}
     `;
                         }
+
+
+// ---- DEVELOPER CARD ----
+function openCardModal() {
+    if (!currentProfileData) return;
+
+    const { user, personality, languages, totalStars, score } = currentProfileData;
+
+    // fill card data
+    document.getElementById('cardAvatar').src = user.avatar_url;
+    document.getElementById('cardName').textContent = user.name || user.login;
+    document.getElementById('cardLogin').textContent = '@' + user.login;
+    document.getElementById('cardPersonality').textContent =
+        personality.emoji + ' ' + personality.type;
+    document.getElementById('cardScore').textContent = score.total + '/100';
+    document.getElementById('cardLang').textContent =
+        Object.keys(languages)[0] || '—';
+    document.getElementById('cardStars').textContent =
+        shortNumber(totalStars) || '0';
+    document.getElementById('cardQuote').textContent =
+        '"' + personality.desc + '"';
+
+    document.getElementById('cardModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeCardModal() {
+    document.getElementById('cardModal').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+async function downloadCard() {
+    const btn = document.getElementById('downloadBtn');
+    btn.textContent = 'Generating...';
+
+    const card = document.getElementById('devShareCard');
+
+    try {
+        const canvas = await html2canvas(card, {
+            scale: 2,
+            backgroundColor: '#0A0A0A',
+            useCORS: true,
+            allowTaint: true,
+            logging: false
+        });
+
+        const link = document.createElement('a');
+        const username = currentProfileData.user.login;
+        link.download = `${username}-stackstory-card.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+
+        btn.textContent = 'Downloaded ✓';
+        btn.style.background = 'var(--green)';
+        setTimeout(() => {
+            btn.textContent = 'Download Card ↓';
+            btn.style.background = '';
+        }, 2000);
+
+    } catch (err) {
+        console.error(err);
+        btn.textContent = 'Try Again';
+        setTimeout(() => { btn.textContent = 'Download Card ↓'; }, 2000);
+    }
+}
+
+// close on escape
+document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') {
+        closeCardModal();
+        closeRecruiterCard();
+    }
+});
