@@ -397,7 +397,6 @@
     flex-shrink: 0;
 }
 
-/* ---- FOOTER ---- */
 .profile-footer {
     padding: 2rem 0;
     border-top: 1px solid var(--border);
@@ -411,14 +410,12 @@
 }
 
 .profile-footer a {
-    color: var(--text);
-    font-weight: 500;
+    color: var(--text-secondary);
     border-bottom: 1px solid var(--border);
-    transition: border-color .2s;
+    transition: color .2s;
 }
 
-.profile-footer a:hover { border-color: var(--text); }
-
+.profile-footer a:hover { color: var(--white); }
 /* ---- RESPONSIVE ---- */
 @media (max-width: 768px) {
     .user-header-inner {
