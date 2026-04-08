@@ -4,6 +4,7 @@
 ================================ */
 
 /* ---- NAVBAR ---- */
+
 .navbar {
     position: sticky;
     top: 0;
@@ -93,24 +94,24 @@
 }
 
 /* ---- HERO ---- */
+/* ---- HERO ---- */
 .hero {
     padding: 120px 0 100px;
     text-align: center;
     position: relative;
     overflow: hidden;
-    background: var(--surface);
+    background: var(--bg);
 }
 
-/* subtle grid pattern background */
+/* dark grid pattern like Vesta */
 .hero::before {
     content: '';
     position: absolute;
     inset: 0;
     background-image:
-        linear-gradient(var(--border) 1px, transparent 1px),
-        linear-gradient(90deg, var(--border) 1px, transparent 1px);
-    background-size: 40px 40px;
-    opacity: .4;
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
     pointer-events: none;
 }
 
@@ -121,8 +122,8 @@
     bottom: 0;
     left: 0;
     right: 0;
-    height: 200px;
-    background: linear-gradient(transparent, var(--surface));
+    height: 300px;
+    background: linear-gradient(transparent, var(--bg));
     pointer-events: none;
 }
 
@@ -140,44 +141,23 @@
     align-items: center;
     gap: 8px;
     padding: 6px 16px;
-    background: var(--surface);
-    border: 1px solid var(--border-dark);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border-light);
     border-radius: 99px;
     font-size: .75rem;
     font-weight: 600;
     color: var(--text-secondary);
     letter-spacing: .04em;
-    box-shadow: var(--shadow-sm);
-    animation: fadeDown .6s ease forwards;
-}
-
-@keyframes fadeDown {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.badge-dot {
-    width: 6px;
-    height: 6px;
-    background: var(--green);
-    border-radius: 50%;
-    animation: pulse 2s infinite;
-}
-
-@keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: .4; }
 }
 
 .hero-title {
     font-family: var(--font-display);
-    font-size: clamp(3.5rem, 9vw, 7rem);
+    font-size: clamp(3rem, 9vw, 6rem);
     font-weight: 400;
     line-height: 1;
     letter-spacing: .03em;
-    color: var(--text);
+    color: var(--white);
     max-width: 900px;
-    animation: fadeUp .7s ease .1s both;
 }
 
 .hero-title-accent {
@@ -185,47 +165,26 @@
     display: block;
 }
 
-@keyframes fadeUp {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
 .hero-sub {
     font-size: clamp(.95rem, 2vw, 1.05rem);
     color: var(--text-secondary);
     max-width: 440px;
     line-height: 1.75;
-    animation: fadeUp .7s ease .2s both;
-}
-
-.hero-search {
-    width: 100%;
-    max-width: 560px;
-    margin-top: .25rem;
-    animation: fadeUp .7s ease .3s both;
 }
 
 .search-bar {
     display: flex;
     align-items: center;
-    background: var(--surface);
-    border: 1.5px solid var(--border-dark);
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border-light);
     border-radius: var(--radius);
     padding: 6px 6px 6px 18px;
-    box-shadow: var(--shadow-md);
-    transition: border-color .2s, box-shadow .2s;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.4);
+    transition: border-color .2s;
 }
 
 .search-bar:focus-within {
-    border-color: var(--text);
-    box-shadow: 0 0 0 3px rgba(0,0,0,0.06);
-}
-
-.search-icon {
-    font-size: 1.1rem;
-    color: var(--muted);
-    margin-right: 10px;
-    flex-shrink: 0;
+    border-color: rgba(255,255,255,0.3);
 }
 
 .search-bar input {
@@ -235,9 +194,12 @@
     background: transparent;
     font-family: var(--font-body);
     font-size: .95rem;
-    color: var(--text);
+    color: var(--white);
 }
+
 .search-bar input::placeholder { color: var(--muted); }
+
+
 
 .search-btn {
     flex-shrink: 0;
